@@ -13,9 +13,9 @@ First after cloning the progect from GitHub Maven meed to reload
  <img width="564" alt="Untitled" src="https://user-images.githubusercontent.com/78940196/194191775-95d6112c-7edf-44a2-9a2b-c03558737085.png">
  
 ## The test consist three test cases 
-1, where user gets approved with 200 status code
-2, where user gets declined with 200 status code 
-3, where customer miss required fields ``SSN, leadOfferlead, gossMonthlyIncome, requestedAmount, stateCode, email``
+###### 1, where user gets approved with 200 status code
+###### 2, where user gets declined with 200 status code 
+###### 3, where customer miss required fields ``SSN, leadOfferlead, gossMonthlyIncome, requestedAmount, stateCode, email``
 
 
  
