@@ -73,10 +73,12 @@ public class OppFIRequest extends BaseClass{
 
         //System.out.println(Request);
         APIKey = ConfigurationReader.getProperty("APIKey");
+        CreditRequestPOJO Request = CreateRequest.GetLoanRequest("","",1200,1000,"","");
         given()
                 .log().all()
                 .header("x-api-key", APIKey)
                 .contentType(ContentType.JSON)
+                .body(Request)
                 .when()
                 .post().
                 then()
