@@ -1,12 +1,10 @@
 # OppFI_TakeHomeTask
 ## Framework Description
-The Framework is a Maven Project where I used pom.xml file to store dependcies. I used Junit for assertion purpose and test order and display name.
+The Framework is a Maven Project where I used pom.xml file to store dependcies. I used Junit for assertion purpose and test ordering and display name.
 Rest Assured as Rest client.
 
 
-###### The project framework consists of 2 folders POJO (Plain old Java Object) where the post request payload is converted to Java class, PostCreditRequestTest where all the testing happen
-and Base class is where the Before and After methods are. The Framework also have Configuration.properties where URL and API Key should exist (API Key is removed), 
-and pom.xml file is where all dependecies exist.
+###### The project consists of 2 folders POJO (Plain old Java Object) where the post request payload is converted to Java class, PostCreditRequestTest where all the testing happen and Base class is where the Before and After methods are. The Framework also have Configuration.properties where URL and API Key should exist (API Key is removed), and pom.xml file is where all dependecies exist.
 
 ## How to Run the test cases:
 First after cloning the progect from GitHub Maven meed to reload
