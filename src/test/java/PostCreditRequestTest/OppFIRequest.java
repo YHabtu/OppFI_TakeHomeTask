@@ -7,39 +7,86 @@ import io.restassured.http.ContentType;
 import org.junit.jupiter.api.*;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
-public class OppFIRequest {
+public class OppFIRequest extends BaseClass{
 
-    String BaseURL;
     String APIKey;
-    @BeforeEach
-    public void setUpTest(){
-        BaseURL = ConfigurationReader.getProperty("OppFI.baseURL");
-        APIKey = ConfigurationReader.getProperty("OppFI.APIKey");
-    }
 
-    @AfterEach
-    public void tearDownTest(){
-        System.out.println("Tear Down running!");
-    }
-    @DisplayName("POST Request to Loan application")
+    @DisplayName("POST Request to Loan application Approve")
     @Test
-    public void POSTLoanRequest(){
-        CreditRequestPOJO Request = CreateRequest.GetLoanRequest();
-        System.out.println(Request);
-
+    public void POSTLoanRequestWhereUserGetApproved(){
+        CreditRequestPOJO Request = CreateRequest.GetLoanRequest("123456780","FL",100000,4000,"kgj25sdd2","test@example.com");
+        //System.out.println(Request);
+        APIKey = ConfigurationReader.getProperty("APIKey");
         given()
                 .log().all()
                 .header("x-api-key", APIKey)
                 .contentType(ContentType.JSON)
-                .body(Request).
-                when()
+                .body(Request)
+        .when()
+                .post().
+        then()
+                .log().all()
+                .assertThat()
+                .statusCode(is(200))
+                .contentType(ContentType.JSON)
+                .body("accepted", is(true))
+                .body("status", is("APPROVED") )
+                .body("request.socialSecurityNumber", equalTo("123456780"))
+                .body("request.stateCode.",is(equalTo("FL")))
+        ;
+    }
+
+    @DisplayName("POST Request to Loan application Decline")
+    @Test
+    public void POSTLoanRequestWhereUserGetDeclined(){
+        CreditRequestPOJO Request = CreateRequest.GetLoanRequest("123450000","IL",100000,1500,"kgj25sdd2","test@example.com");
+        //System.out.println(Request);
+        APIKey = ConfigurationReader.getProperty("APIKey");
+        given()
+                .log().all()
+                .header("x-api-key", APIKey)
+                .contentType(ContentType.JSON)
+                .body(Request)
+        .when()
+                .post().
+        then()
+                .log().all()
+                .assertThat()
+                .statusCode(is(200))
+                .contentType(ContentType.JSON)
+                .body("accepted", is(false))
+                .body("status", is("DECLINED") )
+                .body("request.socialSecurityNumber", equalTo("123450000"))
+                .body("request.stateCode.",is(equalTo("IL")))
+        ;
+    }
+
+    @DisplayName("POST Request to Loan application Where User Sends Missing Required Field")
+    @Test
+    public void POSTLoanRequestWhereUserSendsMissingRequiredField(){
+
+        //System.out.println(Request);
+        APIKey = ConfigurationReader.getProperty("APIKey");
+        given()
+                .log().all()
+                .header("x-api-key", APIKey)
+                .contentType(ContentType.JSON)
+                .when()
                 .post().
                 then()
                 .log().all()
                 .assertThat()
-                .statusCode(is(201))
+                .statusCode(is(200))
+                .contentType(ContentType.JSON)
+                .body("accepted", is(false))
+                .body("status", is("DECLINED") )
         ;
+    }
+    @AfterEach
+    public void tearDownTest(){
+        System.out.println("Tear Down running!");
     }
 }
