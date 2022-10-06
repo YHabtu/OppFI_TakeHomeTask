@@ -14,7 +14,8 @@ First after cloning the progect from GitHub is to reload Maven so it can downloa
 
  To run test the only this that needs to be done is to click on Green run button.
  <img width="564" alt="Untitled" src="https://user-images.githubusercontent.com/78940196/194191775-95d6112c-7edf-44a2-9a2b-c03558737085.png">
- 
+
+## To Run test API key needs to be inserted in Configrations.properties file APIKey= with out any double quotes 
 ## The test consist three test cases 
 ###### 1, where user gets approved with 200 status code
 ###### 2, where user gets declined with 200 status code 
