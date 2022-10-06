@@ -1,11 +1,4 @@
 package Pojo;
-
-import lombok.Getter;
-import lombok.Setter;
-
-import java.util.ArrayList;
-
-@Getter @Setter
 public class CreditRequestPOJO {
     public boolean isProduction;
     public String language;

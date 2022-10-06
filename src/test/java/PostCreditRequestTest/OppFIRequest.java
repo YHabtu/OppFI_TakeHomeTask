@@ -16,6 +16,7 @@ public class OppFIRequest extends BaseClass{
 
     @DisplayName("POST Request to Loan application Approve")
     @Test
+    @Order(1)
     public void POSTLoanRequestWhereUserGetApproved(){
         CreditRequestPOJO Request = CreateRequest.GetLoanRequest("123456780","FL",100000,4000,"kgj25sdd2","test@example.com");
         //System.out.println(Request);
@@ -41,6 +42,7 @@ public class OppFIRequest extends BaseClass{
 
     @DisplayName("POST Request to Loan application Decline")
     @Test
+    @Order(2)
     public void POSTLoanRequestWhereUserGetDeclined(){
         CreditRequestPOJO Request = CreateRequest.GetLoanRequest("123450000","IL",100000,1500,"kgj25sdd2","test@example.com");
         //System.out.println(Request);
@@ -66,6 +68,7 @@ public class OppFIRequest extends BaseClass{
 
     @DisplayName("POST Request to Loan application Where User Sends Missing Required Field")
     @Test
+    @Order(3)
     public void POSTLoanRequestWhereUserSendsMissingRequiredField(){
 
         //System.out.println(Request);
